@@ -1,0 +1,27 @@
+{
+  "name": "nodejs_chat",
+  "version": "1.0.0",
+  "description": "Multiroom chat project, powered by WebSocket",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "chat",
+    "websocket",
+    "multiroom"
+  ],
+  "author": "Marcos Vinícius Queiroz de Sant'Ana Filho",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "consign": "^0.1.6",
+    "dotenv": "^16.0.1",
+    "ejs": "^3.1.8",
+    "express": "^4.18.1",
+    "express-session": "^1.17.3",
+    "express-validator": "^6.14.2",
+    "mongoose": "^6.4.5",
+    "socket.io": "^4.5.1"
+  }
+}
