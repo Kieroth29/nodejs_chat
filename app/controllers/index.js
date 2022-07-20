@@ -1,4 +1,5 @@
 const { validationResult } = require('express-validator');
+const crypto = require('crypto');
 
 module.exports.home = function(application, req, res){
     res.render("index", {validation: null});
@@ -15,7 +16,9 @@ module.exports.login = async function(application, req, res){
 
     const User = application.app.models.User;
 
-    const userObject = await User.find({username: data.username, password: String(data.password)})
+    var encryptedPassword = crypto.createHash("sha256").update(data.password).digest("hex");
+
+    const userObject = await User.find({username: data.username, password: String(encryptedPassword)})
     
     if(userObject.length == 0){
         const paswordVerification = await User.find({username: data.username});

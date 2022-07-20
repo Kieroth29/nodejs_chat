@@ -1,4 +1,5 @@
 const { validationResult } = require('express-validator')
+const crypto = require('crypto')
 
 module.exports.registerForm = function(application, req, res){
     res.render("register", {validation: null});
@@ -16,9 +17,18 @@ module.exports.register = async function(application, req, res){
 
     const userModel = application.app.models.User;
 
+    const usernameSearch = await userModel.find({username: data.username});
+        
+    if(usernameSearch.length > 0){
+        res.render("index", {validation: [{value: '', msg: 'Username already exists', param: 'username', location: 'body'}]});
+        return;
+    }
+
+    var encryptedPassword = crypto.createHash("sha256").update(data.password).digest("hex");
+
     const user = new userModel({
         username: data.username,
-        password: data.password,
+        password: encryptedPassword,
         name: data.name,
         age: data.age
     });
