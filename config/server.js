@@ -1,4 +1,5 @@
 var express = require('express');
+var cors = require('cors');
 var session = require('express-session');
 var consign = require('consign');
 var bodyParser = require('body-parser');
@@ -21,6 +22,8 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }));
+
+app.use(cors());
 
 consign()
     .include('app/routes')
