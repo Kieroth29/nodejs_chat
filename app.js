@@ -4,8 +4,6 @@ const { Server } = require('socket.io');
 
 var app = require('./config/server');
 
-console.log(process.env.SERVER_KEY, process.env.SERVER_CERT)
-
 const options = {
     key: fs.readFileSync(process.env.SERVER_KEY),
     cert: fs.readFileSync(process.env.SERVER_CERT),
