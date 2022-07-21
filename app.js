@@ -10,7 +10,11 @@ const options = {
 };
 
 const httpsServer = createServer(options, app);
-const ws = new Server(httpsServer);
+const ws = new Server(httpsServer, {
+    cors: {
+        origin: 'https://chat.kieroth29.xyz'
+    }
+});
 
 onlineUsers = []
 

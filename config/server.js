@@ -23,7 +23,7 @@ app.use(session({
     saveUninitialized: false
 }));
 
-app.use(cors());
+//app.use(cors());
 
 consign()
     .include('app/routes')
