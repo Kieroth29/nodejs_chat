@@ -1,10 +1,18 @@
+const fs = require("fs");
+const { createServer } = require("https");
 const { Server } = require('socket.io');
-const { createServer } = require("http");
 
 var app = require('./config/server');
 
-const httpServer = createServer(app);
-const ws = new Server(httpServer);
+console.log(process.env.SERVER_KEY, process.env.SERVER_CERT)
+
+const options = {
+    key: fs.readFileSync(process.env.SERVER_KEY),
+    cert: fs.readFileSync(process.env.SERVER_CERT),
+};
+
+const httpsServer = createServer(options, app);
+const ws = new Server(httpsServer);
 
 onlineUsers = []
 
@@ -35,7 +43,7 @@ ws.on('connection', function(socket){
     });
 });
 
-httpServer.listen(3000);
+httpsServer.listen(3000);
 
 module.exports = app;
 module.exports.ws = ws;
