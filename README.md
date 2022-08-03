@@ -7,7 +7,9 @@ Express.js based chat using instructions from Udemy course "Curso Completo do De
 ## Dependencies
 
 > Node.JS
+
 > npm
+
 > MongoDB
 
 ## Installation
