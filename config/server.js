@@ -3,6 +3,8 @@ var cors = require('cors');
 var session = require('express-session');
 var consign = require('consign');
 var bodyParser = require('body-parser');
+var compression = require('compression');
+var helmet = require('helmet');
 
 var app = express();
 
@@ -22,6 +24,8 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }));
+
+app.use(helmet());
 
 //app.use(cors());
 
