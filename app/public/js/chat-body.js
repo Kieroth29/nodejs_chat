@@ -41,6 +41,14 @@ $("#send").click(function () {
     ws.emit("clientMessage", { username: $("#username").val(), id: socketId, message: message });
 });
 
+$(document).keyup(function(e){ 
+    let pressedKey = e.key;
+    if(pressedKey==="Enter") e.preventDefault();
+    if(pressedKey===" " || pressedKey==="Enter" || pressedKey===","|| pressedKey===";"){
+        $("#send").trigger("click");
+    }
+});
+
 ws.on('clientMessage', function (data) {
     $("#messages")
     .append(`
